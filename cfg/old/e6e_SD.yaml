@@ -1,0 +1,39 @@
+Decoder1: #17(89),13(67),9(45) => x3:
+  [
+    [
+      [-1, 1, SkipDeconvBlock, [512, 1280, True]],         # 22
+      [-1, 1, DeconvDownC, [960]],                         # 23[17(89)]
+    ],
+    [
+      [-1, 1, SkipDeconvBlock, [384, 960, True]],           # 22
+      [-1, 1, DeconvDownC, [640]],                         # 29[13(67)]
+    ],
+    [
+      [-1, 1, SkipDeconvBlock, [256, 640, True]],           # 22
+      [-1, 1, DeconvDownC, [320]],                         # 33[9(45)] //+6
+    ]
+  ]
+  
+
+Decoder2: #36(162),29(137),22(112) => x3
+  [
+   [-1, 1, SkipDeconvBlock, [64, 160, False]],          # 22
+   [-1, 1, nn.MaxPool2d, [2, 2]],                       # 47
+   [-1, 1, DeConv, [320, 1, 1]],                        # 48[36(162)]
+   [-1, 1, SkipDeconvBlock, [128, 320, False]],         # 22
+   [-1, 1, nn.MaxPool2d, [2, 2]],                       # 47
+   [-1, 1, DeConv, [480, 1, 1]],                        # 48[36(162)]
+   [-1, 1, SkipDeconvBlock, [192, 480, False]],         # 22
+   [-1, 1, nn.MaxPool2d, [2, 2]],                       # 47
+   [-1, 1, DeConv, [640, 1, 1]],                        # 48[36(162)] //+9
+  ]
+
+Decoder3: #43(187),48(210),53(233),58(256) => x3
+  [
+   [-1, 1, SkipDeconvBlock, [256, 640, False]],         # 22
+   [-1, 1, DeconvDownC, [480]],                         # 23[17(89)]
+   [-1, 1, SkipDeconvBlock, [192, 480, False]],           # 22
+   [-1, 1, DeconvDownC, [320]],                         # 29[13(67)]
+   [-1, 1, SkipDeconvBlock, [128, 320, False]],           # 22
+   [-1, 1, DeconvDownC, [160]],                         # 33[9(45)] //+6
+  ]
